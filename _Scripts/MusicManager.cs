@@ -20,6 +20,7 @@ public class MusicManager : MonoBehaviour {
         if(scene.buildIndex < levelMusicChangeArray.Length){
             if(levelMusicChangeArray[sceneIndex] || sceneIndex == 0){
                 if(levelMusicChangeArray[sceneIndex] != audioSource.clip){
+                    audioSource.volume = PlayerPrefsManager.GetMasterVolume();
                     audioSource.clip = levelMusicChangeArray[sceneIndex];
                     audioSource.loop = true;
                     audioSource.Play();
@@ -29,5 +30,13 @@ public class MusicManager : MonoBehaviour {
             }
         }
         else Debug.LogWarning("No music for scene " + sceneIndex);
+    }
+
+    public void SetVolume(float volume){
+        if(volume >= 0f && volume <= 1f){
+            //AudioListener.volume = volume;
+            audioSource.volume = volume;
+        }
+        else Debug.LogError("Master volume out of range");
     }
 }

@@ -6,7 +6,6 @@ public class FadeIn : MonoBehaviour {
 
     private Image panel;
     private float fadeTime = 0.5f;
-    private Color current = Color.black;
 
     // Use this for self-initialization
 	void Awake() {
