@@ -6,10 +6,11 @@ public class Attacker : MonoBehaviour {
 
     private float currentSpeed;
     private GameObject currentTarget = null;
+    private Animator animator;
 
     // Use this for self-initialization
 	void Awake() {
-	
+        animator = GetComponent<Animator>();
 	}
 	
 	// Use this for initialization
@@ -32,13 +33,18 @@ public class Attacker : MonoBehaviour {
 
 
     public void StrikeCurrentTarget(float dmg){
-        Debug.Log(name + " causeed dmg " + dmg);
+        if(currentTarget){
+            Health health = currentTarget.GetComponent<Health>();
+            if(health)
+                health.TakeDMG(dmg);
+        } else {
+            animator.SetBool("isAttacking",false);
+        }
     }
     public void SetSpeed(float speed){
         currentSpeed = speed;
     }
     public void Attack (GameObject obj){
         currentTarget = obj;
-
     }
 }

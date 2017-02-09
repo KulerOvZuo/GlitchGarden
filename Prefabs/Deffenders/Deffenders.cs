@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Deffenders : MonoBehaviour {	
+[RequireComponent (typeof (Health))]
+public class Deffenders : MonoBehaviour {
 	// Use this for self-initialization
 	void Awake() {
-	
 	}
 	
 	// Use this for initialization
@@ -16,4 +16,6 @@ public class Deffenders : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 }
