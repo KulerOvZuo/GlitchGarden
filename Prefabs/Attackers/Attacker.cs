@@ -5,11 +5,22 @@ using System.Collections;
 public class Attacker : MonoBehaviour {	
 
     private float currentSpeed;
+    [Tooltip ("Average seconds between spawn")]
+    public float seenEverySeconds;
     private GameObject currentTarget = null;
     private Animator animator;
 
+    public const string ATTACKERS_PARENT = "Attackers";
+    private GameObject attackersParent = null;
+
     // Use this for self-initialization
 	void Awake() {
+        attackersParent = GameObject.Find(ATTACKERS_PARENT);
+        if(!attackersParent){
+            attackersParent = new GameObject(ATTACKERS_PARENT);
+        }
+        gameObject.transform.parent = attackersParent.transform;
+
         animator = GetComponent<Animator>();
 	}
 	
@@ -25,10 +36,6 @@ public class Attacker : MonoBehaviour {
 
     void Move(){
         transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
-    }
-
-    void OnTriggerEnter2D(Collider2D collider){
-        Debug.Log(collider.name);
     }
 
 
