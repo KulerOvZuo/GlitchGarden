@@ -6,6 +6,9 @@ public class Deffenders : MonoBehaviour {
 
     public const string DEFFENDERS_PARENT = "Deffenders";
     private GameObject deffendersParent = null;
+    public int cost;
+
+    private StarScript starDisplay;
 	// Use this for self-initialization
 	void Awake() {
         deffendersParent = GameObject.Find(DEFFENDERS_PARENT);
@@ -17,13 +20,12 @@ public class Deffenders : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        starDisplay = GameObject.FindObjectOfType<StarScript>();
 	}
 
+
+    public void AddStart(int amount){
+        starDisplay.AddStars(amount);
+    }
 
 }
