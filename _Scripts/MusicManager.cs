@@ -25,6 +25,11 @@ public class MusicManager : MonoBehaviour {
                     audioSource.loop = true;
                     audioSource.Play();
                 }
+                switch(sceneIndex){
+                    case 0: audioSource.volume = PlayerPrefsManager.GetMasterVolume(); break;
+                    case 6: audioSource.loop = false; break;
+                    case 7: audioSource.loop = false; break;
+                }
             } else {
                 Debug.LogWarning("No music for scene " + sceneIndex);
             }

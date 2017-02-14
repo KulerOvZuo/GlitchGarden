@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ButtonScript : MonoBehaviour {	
@@ -13,6 +14,7 @@ public class ButtonScript : MonoBehaviour {
     void Awake(){
         sprite = GetComponent<SpriteRenderer>();
         sprite.color = defColor;
+        GetComponentInChildren<Text>().text = prefab.GetComponent<Deffenders>().cost.ToString();
     }
 
     void Start(){

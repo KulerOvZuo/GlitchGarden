@@ -10,10 +10,11 @@ public class StarScript : MonoBehaviour {
     // Use this for self-initialization
 	void Awake() {
         text = GetComponent<Text>();
-        starsAmount = 200;
-        text.text = starsAmount.ToString();
+        starsAmount = 300;
 	} 
-
+    void Start(){
+        UpdateDisplay();
+    }
     public void AddStars(int amount){
         starsAmount += amount;
         UpdateDisplay();

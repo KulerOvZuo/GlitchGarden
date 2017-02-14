@@ -8,18 +8,31 @@ public class SpawnContainer{
     [HideInInspector]
     public float timeFromLastSpawn;
 
-    private float seenEverySeconds;
+    public float seenEverySeconds;
     private float randomSpawnTime;
 
     public void Instantiate(){
-        seenEverySeconds = prefab.GetComponent<Attacker>().seenEverySeconds*3f;
+        switch((int)PlayerPrefsManager.GetDifficulty()){
+        case 1:
+            seenEverySeconds = prefab.GetComponent<Attacker>().seenEverySeconds*3f;
+            break;
+        case 2:
+            seenEverySeconds = prefab.GetComponent<Attacker>().seenEverySeconds*2.7f;
+            break;
+        case 3:
+            seenEverySeconds = prefab.GetComponent<Attacker>().seenEverySeconds*2.4f;
+            break;
+        }
         timeFromLastSpawn = 0f;
-        randomSpawnTime = Random.Range(seenEverySeconds*0.5f,seenEverySeconds);
+        randomSpawnTime = Random.Range(seenEverySeconds*1.5f,seenEverySeconds*2f);
     }
 
     public bool CanSpawn(){
         if(timeFromLastSpawn > randomSpawnTime){
             timeFromLastSpawn = 0f;
+            seenEverySeconds *= 0.95f;
+            if(seenEverySeconds < 2f)
+                seenEverySeconds = 2f;
             randomSpawnTime = seenEverySeconds*(1 - Random.value*Random.value) + Random.Range(0f,seenEverySeconds*0.5f);
             return true;
         }
